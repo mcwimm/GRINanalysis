@@ -10,8 +10,8 @@ This folder contains the raw data (csv-files) and processed data (rda-files) to 
 
 **Raw data**
 
-- FullData2019.csv
-- GraftsComplete2019.csv
+- FullData2019clean.csv: tree data
+- links2019.csv: graft data
 
 **Processed data**
 
@@ -25,7 +25,7 @@ This folder contains the raw data (csv-files) and processed data (rda-files) to 
 
 This folder contains
 
-- the multilevel logistic regression model described in the extended data section (_glmer_grafting.R_)
+- The multilevel logistic regression model described in the extended data section (_glmer_grafting.R_)
 - The computations to extract the indices of competition (Hegyi) and neighbourhood asymmetri, the latter used on aThe Generalised additive mixed effects model (GAMM). This script also contains the necesary code to repoduce Figures 2B from the Main document, Extended data Figures 3 and 4, as well as Supplementary information Figures 1 and 2 
 
 ### 3) Figures
