@@ -6,7 +6,8 @@ library(ggpubr)
 # required data
 load("./data/LMtrees.Rda") 
 load("./data/LMavis.Rda") 
-load("d4_data_fig2b.Rda")
+load("./data/data_asymNei.Rda") 
+
 
 
 ######## Fig 2 A ########
