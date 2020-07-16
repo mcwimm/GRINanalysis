@@ -1,3 +1,6 @@
+# Multilevel logistic regression model
+# Extended data
+
 # required packages
 library(lme4)
 library(DHARMa)
@@ -16,6 +19,7 @@ LM.avis = LM.trees %>%
           r_avi = avi.dens / tot.dens)
 
 # z-transform data (grand-mean centering (gmc) > over all study plots)
+# + add observed probabaility of grafting to dataframe
 LM.avis = LM.avis %>% 
    mutate(DBH.gmc = (DBH - mean(LM.avis$DBH)) / sd(LM.avis$DBH),
           salinity.gmc = (salinity - mean(LM.avis$salinity)) /
