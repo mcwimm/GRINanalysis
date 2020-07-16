@@ -21,7 +21,10 @@ This folder contains the raw data (csv-files) and processed data (rda-files) to 
 
 ### 2) Analysis
 
+This folder contains
 
+- the multilevel logistic regression model described in the extended data section (_glmer_grafting.R_)
+- 
 
 ### 3) Figures
 
