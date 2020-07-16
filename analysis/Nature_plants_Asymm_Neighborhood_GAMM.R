@@ -1,20 +1,20 @@
-
-#Required packages
+# Required packages
 library(ggplot2)
 library(janitor)
 library(ggpubr)
 library(gratia)
 library(signs)
 library(mgcv)
+
 #### Load data ####
-d<- read.table("FullData2019clean.csv", header = TRUE, sep = ",")
+d<- read.table("./data/FullData2019clean.csv", header = TRUE, sep = ",")
 
 #Create unique tree ID taggs based on tree ID and plot ID, the ourpose is to accuartley identify grefted tree form the graft links data set
 d$uniqueID<-paste(d$LOC, d$ID)
 
 
 #grfat connections data ("from to" format)
-links<-read.csv("links2019.csv", header=TRUE)
+links<-read.csv("./data/links2019.csv", header=TRUE)
 #Also create unique ID's for tree from (Tree 1) and to (Tree2), then merge rows and create vectro with unique values (remove dipplicates)
 uniqueT1<-paste(links$LOC, links$Tree1); uniqueT2<-paste(links$LOC, links$Tree2); UnID<-c(uniqueT1, uniqueT2)
 
@@ -176,7 +176,8 @@ draw(Mod7)
 #other diagnosis figures
 appraise(Mod7)
 
-
+save(d4, file = "./data/data_asymNei.rda")
+save(Mod7, file = "./data/data_gam.rda")
 
 #### Extended data Figure 4 ####
 
@@ -216,7 +217,7 @@ ExtDatFig4
 #dev.off()
 
 
-###### Supplementary Information Fifures ####
+###### Supplementary Information Figures ####
 
 SI_Fig1A<-ggplot(data = d4, aes(x = Hegyi, y = DBH, color = Condition,size=Hegyi)) +
   geom_point( alpha=0.5) +
