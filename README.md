@@ -1,6 +1,8 @@
 # GRINanalysis
 
-This repository contains all data and analyses of the manuscript entitled "Roots of cooperation...", in Review at Nature-plants 2020:
+This repository contains data and analyses of the manuscript entitled "Roots of cooperation: Can root graft networks benefit trees under stress?", currently under Review at Nature-plants 2020.
+
+The following lines detail de information included in this repository
 
 ### 1) Data
 
@@ -24,7 +26,7 @@ This folder contains the raw data (csv-files) and processed data (rda-files) to 
 This folder contains
 
 - the multilevel logistic regression model described in the extended data section (_glmer_grafting.R_)
-- 
+- The computations to extract the indices of competition (Hegyi) and neighbourhood asymmetri, the latter used on aThe Generalised additive mixed effects model (GAMM). This script also contains the necesary code to repoduce Figures 2B from the Main document, Extended data Figures 3 and 4, as well as Supplementary information Figures 1 and 2 
 
 ### 3) Figures
 
