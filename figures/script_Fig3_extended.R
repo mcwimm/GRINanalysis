@@ -6,7 +6,6 @@ library(gratia)
 
 #### Load data ####
 load("./data/data_gam.rda")
-load("~/Documents/Offis backups March 2020/NatureMSRevission/Nature_MS_Revised/GRINanalysis-master/data/data_gam.rda") # LM.trees
 
 plt1<-qq_plot(Mod7, method="simulate",  point_col="steelblue",point_alpha = 0.7, alpha=0.0)+
    labs(title = NULL, subtitle = NULL)+
