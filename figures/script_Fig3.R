@@ -63,7 +63,6 @@ nd.LOC = merge(LOCs[, c(1, 4, 6)], nd.LOC, by.x = "LOC", by.y = "LOC")
 
 ############ Figure A #####################
 
-#fig3A = Plot_data %>%
 fig3A<-ggplot(Plot_data)+
    geom_point(aes(x=x, y=y)) + labs(x="Node degree", y="CDF") + 
    geom_line(data = AlldistLines, aes(x=x, y=y, colour=distribution, linetype=distribution), size=1.0)+
