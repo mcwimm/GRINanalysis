@@ -2,6 +2,7 @@
 library(ggplot2)
 library(ggpubr)
 library(signs)
+library(gratia)
 
 #### Load data ####
 load("./data/data_gam.rda")
