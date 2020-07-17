@@ -4,8 +4,7 @@ library(ggpubr)
 library(signs)
 
 #### Load data ####
-#load(file = "./data/data_asymNei.rda")
-load("~/Documents/Offis backups March 2020/NatureMSRevission/Nature_MS_Revised/GRINanalysis-master/data/data_asymNei.rda") # LM.trees
+load(file = "./data/data_asymNei.rda")
 
 ###### Supplementary Information Figures ####
 
