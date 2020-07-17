@@ -17,7 +17,7 @@ This folder contains the raw data (csv-files) and processed data (rda-files) to 
 
 **Processed data**
 
-  - LMtrees.rda: contains data (e.g. unique ID, coordinates, species, DBH, graft-status, …) for each tree in the study area, resulting from merging raw data bases of tree attrubutes (publicly available at https://doi. org/10.5525/gla.researchdata.657) and field mapping of root connections through root grafts (Networks.rda)
+  - LMtrees.rda: contains data (e.g. unique ID, coordinates, species, DBH, graft-status, …) for each tree in the study area, resulting from merging raw data bases of tree attrubutes (publicly available at https://doi.org/10.5525/gla.researchdata.657) and field mapping of root connections through root grafts (Networks.rda)
   - LMavis.rda: is a subset of LMtrees.rda containing only Avicennia germinans trees, but also additional information as the salinity group of the study plot and the cumulated grafting probability of each tree.
   - LMlinks.rda: contains all grafted pairs of trees with additional information like the distance between them or the group they belong to.
   - LMgroups.rda: contains all groups of grafted trees with additional information as the number of trees and the number of links within each group.
