@@ -10,8 +10,7 @@ This folder contains the raw data (csv-files) and processed data (rda-files) to 
 
 **Raw data**
 
-- FullData2019clean.csv: tree data
-- links2019.csv: graft data
+- Networks.rda: graft data, contains only information of grafted trees in a from-to format, where trees in column "Tree1" in grafted to trees in column "Tree2" 
 
 **Processed data**
 
@@ -27,7 +26,9 @@ This folder contains
 
 - The multilevel logistic regression model described in the extended data section (_glmer_grafting.R_)
 - The computations to extract the indices of competition (Hegyi) and neighbourhood asymmetri, the latter used on the Generalised additive mixed effects model (GAMM). This script also contains the necesary code to repoduce Figures 2B from the Main document, Extended data Figures 3 and 4, as well as Supplementary information Figures 1 and 2 
+_ The comparisson between power law and other random-process distribution functions
 
 ### 3) Figures
 
-This folder contains the scripts needed to reproduce all figures.
+This folder contains the scripts needed to reproduce figures present in the Manuscript (including those in Extended Data and Supplementary Information Files)
+Only the scripts to build Fig. 1 of the Main document are not yet inclued to date (17th July 2020), these was combined from 3 different R obsects (Mexico's country map, Study site GIS image, and grafted tree maps) and were further combined using GIMP V.2.10. We are working on uplading such scripts and will be updated as soon as possible
