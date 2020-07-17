@@ -7,7 +7,7 @@ library(signs)
 library(mgcv)
 
 #### Load data ####
-load("~/Documents/Offis backups March 2020/NatureMSRevission/Nature_MS_Revised/GRINanalysis-master/data/LMtrees.rda") # LM.trees
+load("./data/LMtrees.rda") # LM.trees
 
 d<-LM.trees
 
