@@ -16,7 +16,7 @@ colnames(d)[12]<-"Condition"
 
 d$Ymax <- d$Xmax <- ifelse(d$LOC %in% c("6","Lr 3"), 20, 30) #define limits of plots
 
-# Compute crown metrics  using stem position as reference point in a complex plane such that X,y position are expressed as complex numbers
+#### Compute neighbourhood metrics  using stem position as reference point in a complex plane such that x,y positions are expressed as complex numbers ####
 r <- function(a) outer(1:nrow(d), a, function(x,y) y)  # function to create a matrix with nrow(d) rows all equal to a
 
 # Define stem position in a complex plain
@@ -67,9 +67,9 @@ d2<-completeFun(d, "AsymmNeighDBH") #data sets excluding trees with no computed 
 d3<-d2[d2$stems==1 ,]  #remove multi-stem trees, one tree has no stem info, next line removes it from the data set
 
 d4<-d3 %>% remove_empty("rows")
-#curves change when removing multi-stem trees, which overestimate dbh in relation to Height, this confirms the
-#need to have one dbh and one height value for each stem of multi-stem trees ans some how treat them as individuals in future studies
-
+# remove 1 tree with missing stem number attribute
+		       
+# Figure 2B of Main document 
 Fig2B<-ggplot(d4, aes(x = DBH, y = height, colour=Condition, linetype=Condition)) + #shift between d2 (all trees) and d5, Trees with asymmetry
   geom_point(aes(size=AsymmNeighDBH), alpha=0.5)+
   ylim(-1,32)+
@@ -79,7 +79,6 @@ Fig2B<-ggplot(d4, aes(x = DBH, y = height, colour=Condition, linetype=Condition)
               method.args = list( formula = 'y~H*(1-exp(-a*x))',  
                                   start=c(H=20, a=0.2)), se=FALSE)+
   scale_linetype_manual(name="Condition", values = c("solid", "longdash" ), labels=c("Grafted", "Non-grafted"))+
-  #theme_bw()+
   scale_size_continuous(name=expression(atop(bold("Neighbourhood"), paste(bold("asymmetry")))))+
   scale_color_manual(name="Condition",
                      values=c("#FF7F50","#BC8F8F"),
@@ -153,6 +152,7 @@ abline(h=0)
 
 
 #### Extended data Figure 3 ####
+		       
 #tiff("Ext_Dat_Fig3.tiff", height = 4000, width = 7000, res=600)
 draw(Mod7)
 #dev.off()
