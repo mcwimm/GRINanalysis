@@ -4,7 +4,7 @@ library(ggpubr)
 library(signs)
 
 #### Load data ####
-load(file = "./data/data_asymNei.rda")
+load("./data/data_asymNei.rda")
 
 ###### Supplementary Information Figures ####
 
