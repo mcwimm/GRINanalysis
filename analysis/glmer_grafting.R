@@ -66,7 +66,7 @@ LM.avis$sal.group <- factor(LM.avis$sal.group,
                             levels = c("\u003c 45", 
                                        "45 \u2212 54", "\u2265 55"))
 
-save(LM.avis, file = "./data/LMavis.Rda")
+# save(LM.avis, file = "./data/LMavis.Rda")
 
 # Residuen-Plots
 simulationOutput <- simulateResiduals(fittedModel = fm.gmc, n = 500)
