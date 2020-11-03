@@ -1,9 +1,10 @@
-library(igraph); library(ggplot2)
-library(poweRlaw)
-library(scales)
+# library(igraph)
+# library(ggplot2)
+# library(poweRlaw)
+# library(scales)
 
 #Import dataset with for-to tree connections
-load("~/Documents/Offis backups March 2020/NatureMSRevission/Nature_MS_Revised/GRINanalysis-master/data/Networks.rda") # LM.trees
+load("./data/Networks.rda")
 
 #create unique ID for each tree in the data set
 links2$tnames <- paste(links2$LOC, links2$Tree1) #unique identifier for each tree T1 combining plot and tree ID
