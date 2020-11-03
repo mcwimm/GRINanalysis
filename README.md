@@ -7,6 +7,8 @@ Co-Authored by: AG Vovides, MC Wimmler, F Schrewe, T Balke, M Zwanzig, C Piou, E
 
 The following lines briefly describe the files included in this repository.
 
+The *setup.R* file installs all required packages at once.
+
 ### 1) Data
 
 This folder contains the raw data (csv-files) and processed data (rda-files) to run the analysis and create the figures.
