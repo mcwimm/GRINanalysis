@@ -59,5 +59,7 @@ x11()
 ggarrange(fig2Supp, ggplot(), widths = c(1.15, 1),
           font.label = list(size = 16, color = "black"))
 
-ggsave(filename = "Fig1Extended.pdf", device=cairo_pdf)
-ggsave(filename = "Fig1Extended.svg")
+# ggsave(fig2Supp, filename = "Fig1Extended.pdf", 
+#        width = 6, height = 6,
+#        device=cairo_pdf)
+# ggsave(filename = "Fig1Extended.svg")

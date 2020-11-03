@@ -38,3 +38,5 @@ ExtDatFig4<-ggarrange(plt1,plt2, labels = c("A","B"))
 #tiff("GAMM_Resid.tiff", height = 1400, width =2100, res=300)
 ExtDatFig4
 #dev.off()
+
+ggsave(filename = "Fig4Extended.pdf", device=cairo_pdf)

@@ -5,7 +5,6 @@ library(ggpubr)
 # required data
 load("./data/LMtrees.Rda") 
 load("./data/LMavis.Rda") 
-load("./data/data_asymNei.Rda") 
 
 fillcolors<-c("#260C7D", "#007D06")
 
@@ -144,8 +143,8 @@ ggarrange(fig2A,Fig2BC, nrow = 2, heights=c(1,1), labels="A")
 ######## SAVE ########
 
 # ggsave(filename = "Fig2.svg")
-# ggsave(filename = "Fig2.pdf", device=cairo_pdf, 
-#        width = 12, height = 8)
+ggsave(filename = "Fig2.pdf", device=cairo_pdf,
+       width = 10, height = 7.5)
 
 
 
