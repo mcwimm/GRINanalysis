@@ -1,21 +1,19 @@
+# Required packages
+library(ggplot2)
+library(ggpubr)
+library(signs)
+
+#### Load data ####
+load("./data/data_asymNei.rda")
+
 ###### Supplementary Information Figures ####
 
-load("./data/LMavis.Rda") 
-
-
-############
-# Figure 1 #
-############
-
-SI_Fig1A<- ggplot(data = LM.avis, aes(x = Hegyi, y = DBH, 
-                                      color = Condition,size=Hegyi)) +
+SI_Fig1A<-ggplot(data = d4, aes(x = Hegyi, y = DBH, color = Condition,size=Hegyi)) +
    geom_point( alpha=0.5) +
    xlab("Stem diameter (cm)") +
    ylab("Tree height (m)")+
-   scale_x_continuous(expression(paste( ~italic(CI))),
-                      limits = c(0, 30))+
-   scale_y_continuous(expression(paste("Stem diameter", " (cm)")), 
-                      limits = c(0, 60))+
+   scale_x_continuous(expression(paste( ~italic(CI))),limits = c(0, 30))+
+   scale_y_continuous(expression(paste("Stem diameter", " (cm)")), limits = c(0, 60))+
    scale_color_manual(name="Condition",
                       values=c("#008080","#800080"),
                       breaks= c("grafted", "non-grafted"),
@@ -41,8 +39,7 @@ SI_Fig1A<- ggplot(data = LM.avis, aes(x = Hegyi, y = DBH,
           size = guide_legend(ncol = 2, byrow = F))
 
 
-SI_Fig1B<-ggplot(data = LM.avis, aes(x =DBH, y = height, 
-                                     color = Condition,size=Hegyi)) +
+SI_Fig1B<-ggplot(data = d4, aes(x =DBH, y = height, color = Condition,size=Hegyi)) +
    geom_point(alpha=0.5) +
    xlab("Stem diameter (cm)") +
    ylab("Tree height (m)")+
@@ -68,20 +65,10 @@ SI_Fig1B<-ggplot(data = LM.avis, aes(x =DBH, y = height,
           size = guide_legend(ncol = 2, byrow = F))
 
 #tiff("Supp_Info_Fig1.tiff", height = 1500, width = 2000, res=300)
-ggarrange(SI_Fig1A, SI_Fig1B, 
-          common.legend = TRUE, legend = "bottom",
-          labels= c("A","B"))
+ggarrange(SI_Fig1A, SI_Fig1B,common.legend = TRUE, labels= c("A","B"))
 #dev.off()
 
-# ggsave(filename = "SupFig1.pdf", width = 10, height = 6)
-
-
-
-############
-# Figure 2 #
-############
-
-SI_Fig2A<-ggplot(LM.avis, aes(x = AsymmNeighDBH, y = DBH, colour=Condition)) + #shift between d2 (all trees) and d5, Trees with asymmetry
+SI_Fig2A<-ggplot(d4, aes(x = AsymmNeighDBH, y = DBH, colour=Condition)) + #shift between d2 (all trees) and d5, Trees with asymmetry
    geom_point(aes(size=AsymmNeighDBH), alpha=0.5)+
    xlab("Neighbourhood asymmetry index") +
    ylab("Stem diameter (cm)") +
@@ -89,7 +76,7 @@ SI_Fig2A<-ggplot(LM.avis, aes(x = AsymmNeighDBH, y = DBH, colour=Condition)) + #
    scale_color_manual(name="Condition",
                       values=c("#008080","#800080"),
                       breaks= c("grafted", "non-grafted"),
-                      labels=c("Grafted", "Non-grafted"))+
+                      labels=c("Grafted", "Non-Grafted"))+
    theme(panel.grid = element_blank(),
          panel.background = element_blank(),
          axis.text.x = element_text(margin=unit(c(0.5,0.5,0.5,0.5), "cm"),size=12, colour = "black" ),
@@ -101,13 +88,9 @@ SI_Fig2A<-ggplot(LM.avis, aes(x = AsymmNeighDBH, y = DBH, colour=Condition)) + #
          axis.line = element_line(colour = 'black', size = 1),
          legend.background = element_rect(fill = NA),
          legend.key = element_rect(fill = NA, color = NA))+
-   
-   guides(fill = guide_legend(keywidth = 1, keyheight = 1),
-          linetype=guide_legend(keywidth = 2.5, keyheight = 1),
-          colour=guide_legend(keywidth = 2.5, keyheight = 2),
-          size = guide_legend(ncol = 2, byrow = F))
+   guides(size = guide_legend(nrow = 2, byrow = T)) 
 
-SI_Fig2B<-ggplot(data = LM.avis, aes(x =DBH, y = height, color = Condition,size=AsymmNeighDBH)) +
+SI_Fig2B<-ggplot(data = d4, aes(x =DBH, y = height, color = Condition,size=AsymmNeighDBH)) +
    geom_point(alpha=0.5) +
    xlab("Stem diameter (cm)") +
    ylab("Tree height (m)")+
@@ -134,12 +117,8 @@ SI_Fig2B<-ggplot(data = LM.avis, aes(x =DBH, y = height, color = Condition,size=
           size = guide_legend(ncol = 2, byrow = F))
 
 
-Sup_Info_Figure2<-ggarrange(SI_Fig2A,SI_Fig2B, 
-                            common.legend = TRUE, legend = "bottom",
-                            labels = c("A","B"),
-                            widths = 1, heights = 1)
+Sup_Info_Figure2<-ggarrange(SI_Fig2A,SI_Fig2B, common.legend = TRUE, labels = c("A","B"),widths = 1, heights = 1)
 #tiff("NeighAsymm_dbh.tiff", width=2000, height=2000, res=300)
 Sup_Info_Figure2
 #dev.off()
 
-# ggsave(filename = "SupFig2.pdf", width = 10, height = 6)

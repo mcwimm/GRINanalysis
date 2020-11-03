@@ -1,14 +1,12 @@
 # required packages
-library(ggpubr)
-library(ggplot2)
-library(tidyverse)
-library(scales)  # trans_breaks
+if (!require("ggpubr")) install.packages("ggpubr")
+if (!require("ggplot2")) install.packages("ggplot2")
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("scales")) install.packages("scales")
 
 # required data
 load("./data/LMavis.Rda") 
-
 load("./data/LMgroups.Rda") 
-load("./data/LMtrees.Rda") 
 load("./data/Plot_data.Rda")
 load("./data/AlldistLines.Rda")
 
