@@ -1,5 +1,12 @@
 load("./data/data_gam.rda") # LM.trees
 
+#### Extended data Figure 3 ####
+
+draw(Mod)
+
+ggsave(filename = "Fig3Extended.pdf", device=cairo_pdf,
+       width = 10, height = 6.25)
+
 
 #### Extended data Figure 4 ####
 
