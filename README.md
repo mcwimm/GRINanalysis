@@ -11,11 +11,8 @@ The *setup.R* file installs all required packages at once.
 
 ### 1) Data
 
-This folder contains the raw data (csv-files) and processed data (rda-files) to run the analysis and create the figures.
+This folder contains the processed data (rda-files) to run the analysis and create the figures.
 
-**Raw data**
-
-- Networks.rda: graft data, contains only information of grafted trees in a from-to format, where trees in column "Tree1" in grafted to trees in column "Tree2" 
 
 **Processed data**
 
@@ -33,7 +30,7 @@ This folder contains
 
 - The multilevel logistic regression model described in the extended data section (*glmer_grafting.R*)
 - The computations to extract the indices of competition (Hegyi) and neighborhood asymmetry (*neighborhood_gamm_slenderness.R*). The latter used on the Generalized additive mixed effects model (GAMM). This script also contains the necessary code to reproduce extended data Figures 3 and 4, as well as Supplementary information Figures 1 and 2.
-- The comparison between power-law distribution and other random-process distribution functions (*PowerLawDist.R*).
+- The comparison between power-law distribution and other random-process distribution functions (*power_law_distributions.R*).
 - Descriptive statistics and simple correlations (*numbers.R*)
 
 ### 3) Figures
