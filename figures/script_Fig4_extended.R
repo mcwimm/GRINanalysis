@@ -1,4 +1,4 @@
-load("./data/data_gam.rda") # LM.trees
+load("./data/data_gam.rda") 
 
 #### Extended data Figure 3 ####
 
