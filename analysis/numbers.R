@@ -5,7 +5,7 @@
 # Descriptive statistics and simple linear models 
 
 # load data
-load("./data/LMavis.Rda") # dataframe containing tree characteristics
+load("./data/LMtrees.Rda") # dataframe containing tree characteristics
 load("./data/LMgroups.Rda") # dataframe containing tree characteristics
 
 ###########################################################
@@ -15,13 +15,18 @@ load("./data/LMgroups.Rda") # dataframe containing tree characteristics
 # ranges: stand density (total and avicennia), 
 # grafting frequency, salinity
 
-d = LM.avis %>% 
+d = LM.trees %>% 
+   group_by(LOC) %>% 
+   mutate(tot.dens = n() / (30*30) * 10000) %>% 
+   filter(Sp == "A") %>%  # filter only Avicennia g. trees
    mutate(avi.trees = n(),
+          avi.dens = avi.trees / (30*30) * 10000,
           avgNodeDegreeAll = round(mean(netDeg), 3)) %>% 
    filter(netDeg != 0) %>% 
    mutate(pGrafted = round(n() / avi.trees * 100, 1),
           avgNodeDegree = round(mean(netDeg), 3)) %>% 
-   distinct(LOC, tot.dens = round(tot.dens, 0 ), avi.dens = round(avi.dens, 0 ),
+   distinct(LOC, tot.dens = round(tot.dens, 0 ), 
+            avi.dens = round(avi.dens, 0 ),
             avi.trees, pGrafted, salinity, avgNodeDegreeAll,
             avgNodeDegree) %>% 
    ungroup() %>% 
@@ -29,8 +34,10 @@ d = LM.avis %>%
 d %>% 
    View()
 
+
 # frequency of root grafting of top height trees
-LM.avis %>% 
+LM.trees %>% 
+   filter(Sp == "A") %>% 
    ungroup() %>%
    group_by(LOC) %>%
    mutate(totalTrees = n()) %>% 
