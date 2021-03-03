@@ -29,7 +29,7 @@ t = LM.trees %>%
    mutate(alpha = ifelse(groupBin == "group", 0.5, 0.2)) %>% 
    mutate(LOC = factor(LOC, levels = c(1, 9, 12)))
 
-labs = data.frame(label = c("b", "c", "d"),
+labs = data.frame(label = c("b)", "c)", "d)"),
                   LOC = factor(c(1, 9, 12), levels = c(1, 9, 12)))
 Fig1B = t %>% 
    ggplot(.) + 
@@ -82,6 +82,6 @@ Fig1B = t %>%
 tiff("figures/Fig1AB_map.tiff", width = 9000, height = 5500, res=300)
 # png("figures/Fig1AB_map.png", width = 9000, height = 5500, res=300)
 ggarrange(P3, Fig1B, 
-          widths = c(3.5,1.2), labels=c("a",""),
+          widths = c(3.5,1.2), labels=c("a)",""),
           font.label = list(size=40, color="black") )
 dev.off()
