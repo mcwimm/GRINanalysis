@@ -11,6 +11,7 @@ P3 <- ggplot() +
    theme_void()+
    background_image(img)
 
+
 # Top view of selected study sites (Fig 1 B)
 # required La Mancha data
 load("./data/LMtrees.Rda") 
@@ -19,15 +20,20 @@ load("./data/LMlinks.Rda")
 # mid stress = LOC 9
 # high stress = LOC 12
 
+# subset data
 l = LM.links %>% 
    filter(LOC %in% c(1, 9, 12)) %>% 
-   mutate(LOC = factor(LOC))
+   mutate(LOC = factor(LOC, levels = c(1, 9, 12)))
 t = LM.trees %>% 
    filter(LOC %in% c(1, 9, 12)) %>% 
-   mutate(alpha = ifelse(groupBin == "group", 0.5, 0.2))
+   mutate(alpha = ifelse(groupBin == "group", 0.5, 0.2)) %>% 
+   mutate(LOC = factor(LOC, levels = c(1, 9, 12)))
+
+labs = data.frame(label = c("b", "c", "d"),
+                  LOC = factor(c(1, 9, 12), levels = c(1, 9, 12)))
 Fig1B = t %>% 
    ggplot(.) + 
-   coord_fixed() +
+   coord_fixed(clip = 'off', xlim = c(-2, 32)) +
    geom_circle(mapping = aes(x0=x, y0=y, r = CR, 
                              alpha = alpha, fill = Sp, color=NA),
                size=0.1) +
@@ -36,6 +42,8 @@ Fig1B = t %>%
    geom_point(t[t$netDeg != 0, ], mapping=aes(x=x, y=y),
               shape = 16, col = "khaki1", alpha = 0.9, size = 0.8) +
    facet_wrap(~ LOC, ncol = 1) +
+   geom_text(labs, mapping=aes(x = -14, y = 30, label = label),
+             hjust = -0.1, vjust = 0, size = 14, fontface = 'bold') +
    scale_alpha_continuous(range = c(0.2, 0.5),
                           guide = "none") +
    scale_fill_manual(values = c("chartreuse4", "#56B4E9", "#E69F00"),
@@ -72,7 +80,8 @@ Fig1B = t %>%
 
 # arrange figures and save it
 tiff("figures/Fig1AB_map.tiff", width = 9000, height = 5500, res=300)
+# png("figures/Fig1AB_map.png", width = 9000, height = 5500, res=300)
 ggarrange(P3, Fig1B, 
-          widths = c(3.5,1.2), labels=c("A","B"),
+          widths = c(3.5,1.2), labels=c("a",""),
           font.label = list(size=40, color="black") )
 dev.off()
