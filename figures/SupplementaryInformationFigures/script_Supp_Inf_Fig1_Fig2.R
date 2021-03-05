@@ -138,10 +138,11 @@ SI_Fig2B <- ggplot(data = LM.avis, aes(x =DBH, y = height,
           size = guide_legend(ncol = 2, byrow = F))
 
 #### Merge figures ####
-Sup_Info_Figure2 <- ggarrange(SI_Fig2A,SI_Fig2B, 
+Sup_Info_Figure2 <- ggarrange(SI_Fig2A, SI_Fig2B, 
+                              widths = c(0.53, 0.47),
                               common.legend = TRUE, legend = "bottom",
                               labels = c("a)","b)"),
-                              widths = 1, heights = 1)
+                              heights = 1)
 
 #### Save file ####
 tiff("figures/Sup_Info_Figure2.tiff", width=2000, height=1500, res=300)
