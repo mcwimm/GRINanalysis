@@ -1,14 +1,13 @@
-#### required packages ####
-library(tidyverse)
-library(BBmisc)
-library(ggpubr)
+#### Required packages ####
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("ggpubr")) install.packages("ggpubr")
+if (!require("BBmisc")) install.packages("BBmisc")
 
-#### required data ####
+#### Required data ####
 load("./data/LMavis.Rda") 
 
 
-#### Supplementary Information Figure 3  #####
-
+#### SI Figure 3  #####
 Supp_Inf_Fig3 = LM.avis %>%
    group_by(LOC) %>% 
    mutate(DBHnorm = normalize(DBH, method = "range", range = c(0, 1))) %>% 
@@ -43,7 +42,6 @@ Supp_Inf_Fig3 = LM.avis %>%
          axis.line = element_line(colour = 'black', size = 1),
          legend.text = element_text(size = 12),
          legend.spacing.y = unit(0.45,"cm"),
-         
          legend.title = element_text(size = 14),
          legend.margin = margin(t = 1, unit = "cm"),
          legend.background = element_rect(fill = NA),
@@ -53,17 +51,7 @@ Supp_Inf_Fig3 = LM.avis %>%
       size = guide_legend(ncol = 2, byrow = F))
 
 
-#### SAVE ####
-#tiff("Supp_Inf_Fig31.tiff", width = 1700, height = 2100, res=300)
+#### Save file ####
+tiff("figures/Sup_Info_Figure3.tiff", width = 1700, height = 2100, res=300)
 Supp_Inf_Fig3
-#dev.off()
-
-
-#x11()
-#ggarrange(Ext_Dat_Fig1, ggplot(), widths = c(1.15, 1),
-#         font.label = list(size = 16, color = "black"))
-
-# ggsave(Ext_Dat_Fig1, filename = "Fig1Extended.pdf", 
-#        width = 6, height = 6,
-#        device=cairo_pdf)
-# ggsave(filename = "Fig1Extended.svg")
+dev.off()

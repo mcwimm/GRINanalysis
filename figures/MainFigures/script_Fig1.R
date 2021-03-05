@@ -1,29 +1,28 @@
-#### required packages ####
-library(tidyverse)
-library(ggpubr)  # ggarrange
-library(ggforce) # geom_circle
-library(png)
+#### Required packages ####
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("ggpubr")) install.packages("ggpubr")    # ggarrange
+if (!require("ggforce")) install.packages("ggforce")  # geom_circle
+if (!require("png")) install.packages("png")          # readPNG
 
 
 #### Import the La Mancha map (Fig 1a) ####
-# Files used to construct Map2.png are contained withing the folder "Map2.png gis files". The folder includes plot coordinates, a geoTIFF and a qgz to open in Qgis (open source)
+# Files used to construct StudySiteMexico.png are contained withing the folder "Files_MapStudySiteMexico". The folder includes plot coordinates, a geoTIFF and a qgz to open in Qgis (open source)
 
-img <- readPNG("figures/Map3.png")
-P3 <- ggplot() + 
+img <- readPNG("figures/MainFigures/StudySiteMexico.png")
+Fig1A <- ggplot() + 
   theme_void()+
   background_image(img)
 
 
-# Top view of selected study sites (Fig 1 B)
-#### required La Mancha data ####
+#### Top view of selected study sites (Fig 1 B-D) ####
+# Required La Mancha data
 load("./data/LMtrees.Rda") 
 load("./data/LMlinks.Rda") 
 # low stress = LOC 1
 # mid stress = LOC 9
 # high stress = LOC 12
 
-#### Figure 1b ####
-# subset data
+# Subset data
 l = LM.links %>% 
   filter(LOC %in% c(1, 9, 12)) %>% 
   mutate(LOC = factor(LOC, levels = c(1, 9, 12)))
@@ -81,9 +80,9 @@ Fig1B = t %>%
 
 
 
-#### arrange figures and save file ####
+#### Arrange figures and save file ####
 tiff("figures/Fig1.tiff", width = 9000, height = 5000, res=300)
-ggarrange(P3, Fig1B, 
+ggarrange(Fig1A, Fig1B, 
           widths = c(3.5,1.2), labels=c("a)",""),
           font.label = list(size=40, color="black") )
 dev.off()

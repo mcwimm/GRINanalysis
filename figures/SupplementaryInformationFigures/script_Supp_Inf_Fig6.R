@@ -1,25 +1,26 @@
-#### required packages ####
- library(ggcorrplot)
+#### Required packages ####
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("ggcorrplot")) install.packages("ggcorrplot")
 
-#### required data ####
+#### Required data ####
 load("./data/LMavis.Rda") 
 
-#### select desired rows (location, densities, salinity) from data frame ####
+#### Prepare data ####
+# Select desired rows (location, densities, salinity) from data frame
 d = LM.avis %>% 
    distinct(LOC, tot.dens, avi.dens, salinity) %>% 
    mutate(r_avi = avi.dens / tot.dens)
 
-#### compute correlation matrix ####
+# Compute correlation matrix
 correlations <- cor(d[, -1],
                     use = "complete.obs")
 
-#### calculate p-values ####
+# Calculate p-values
 res1 <- cor_pmat(d[, -1])
 
 
-#### create figure ####
-#x11()
-Supp_Inf_Fig6<-ggcorrplot(correlations, 
+#### SI Figure 6 ####
+Supp_Inf_Fig6 <- ggcorrplot(correlations, 
            method = "circle", type = "upper",
            colors = c("#6D9EC1", "white", "#E46726"),
            legend.title = "Correlation",
@@ -39,11 +40,7 @@ Supp_Inf_Fig6<-ggcorrplot(correlations,
                                          linetype = 'solid',
                                          colour = "#A9A9A9"))
 
-#### Save figure ####
-
-#tiff("Supp_Inf_Fig6.tiff", width = 2000, height = 2000, res=300)
+#### Save file ####
+tiff("figures/Sup_Info_Figure6.tiff", width = 2000, height = 2000, res=300)
 Supp_Inf_Fig6
-#dev.off()
-
-#ggsave(filename = "CorrelationMatrix.pdf", device=cairo_pdf)
-# ggsave(filename = "CorrelationMatrix.svg")
+dev.off()
