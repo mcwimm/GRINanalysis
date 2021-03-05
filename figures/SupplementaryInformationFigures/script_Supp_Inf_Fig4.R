@@ -194,7 +194,7 @@ SuppFig3F <- p[[7]] +
 #### Merge figures ####
 Supp_Fig_Fig4 <-ggarrange(SuppFig3A, SuppFig3B, SuppFig3C,
                           SuppFig3D, SuppFig3E, SuppFig3F, 
-                          nrow = 2, ncol = 3, 
+                          nrow = 2, ncol = 3, align = "hv",
                           labels = c("a)","b)","c)","d)","e)","f)"))
 
 #### Save file ####
