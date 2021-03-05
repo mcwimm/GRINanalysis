@@ -35,5 +35,4 @@ This folder contains
 
 ### 3) Figures
 
-This folder contains the scripts needed to reproduce figures present in the manuscript (including those in Extended Data and Supplementary Information Files).  
-Only the scripts to build Fig. 1 of the Main document are not yet included to date (17th July 2020), these was combined from 3 different R objects (Mexico's country map, Study site GIS image, and grafted tree maps) and were further combined using GIMP V.2.10. We are working on uploading such scripts and will be updated as soon as possible
+This folder contains the scripts needed to reproduce figures present in the manuscript (including those in Supplementary Information Files).
