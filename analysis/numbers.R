@@ -6,7 +6,8 @@
 
 # load data
 load("./data/LMtrees.Rda") # dataframe containing tree characteristics
-load("./data/LMgroups.Rda") # dataframe containing tree characteristics
+load("./data/LMavis.Rda") # dataframe containing a.g. tree characteristics
+load("./data/LMgroups.Rda") # dataframe containing group characteristics
 
 ###########################################################
 # Drivers of root grafting and implications for tree size #
