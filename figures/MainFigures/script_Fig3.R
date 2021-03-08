@@ -130,7 +130,7 @@ fig3B = ggplot(LOCs) +
       aes(x = avi.dens, y = avgNodeDegreeAll,
           label =  paste("Average~node~'degree'~", 
                          ..adj.rr.label.., sep = "~~~~~~")),
-      label.x.npc = 0, label.y = 1.25, size = 4,
+      label.x.npc = 0, label.y = 1.15, size = 4,
       formula = y~x) +
    labs(y = "Average \nnode degree", x = "",
         size = "Grafting \nfrequency (%)",
@@ -229,9 +229,7 @@ Fig3 <- ggarrange(fig3A, r, labels = c("a)", ""))
 
 
 #### Save file ####
-png("figures/Fig3.png", width = 3700, height = 2300, res=300)
-
-#tiff("figures/Fig3.tiff", width = 3700, height = 2300, res=300)
+tiff("figures/Fig3.tiff", width = 3700, height = 2300, res=300)
 annotate_figure(Fig3,
                 top = text_grob(paste0("Fig. 3. Root graft network attributes\n"),
                                 color = "black", face = "bold", 
