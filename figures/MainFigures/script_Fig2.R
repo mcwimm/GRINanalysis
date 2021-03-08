@@ -5,7 +5,7 @@ if (!require("ggpubr")) install.packages("ggpubr")   # ggarrange
 #### Required data ####
 load("./data/LMavis.Rda") 
 
-fillcolors<-c("#260C7D", "#007D06")
+fillcolors <- c("#260C7D", "#007D06")
 
 
 #### Fig 2a ####
@@ -128,10 +128,7 @@ Fig2C <- LM.avis %>%
          axis.line = element_line(colour = 'black', size = 1),
          legend.background = element_rect(fill = NA),
          legend.key = element_rect(fill = NA, color = NA))+
-   
-   guides(#fill = guide_legend(keywidth = 1, keyheight = 1),
-      #linetype=guide_legend(keywidth = 2.5, keyheight = 1),
-      colour=guide_legend(keywidth = 2.5, keyheight = 1),
+   guides(colour=guide_legend(keywidth = 2.5, keyheight = 1),
       size = guide_legend(ncol = 2, byrow = F))
 
 
@@ -145,7 +142,6 @@ Fig2 <- ggarrange(Fig2A, Fig2BC, nrow = 2,
                   heights=c(1,1), labels="a)")
 
 #### Save file ####
-
 tiff("figures/Fig2.tiff", width = 2000, height = 3000, res=300)
 annotate_figure(Fig2,
                 top = text_grob(paste0("Fig. 2. Probability of rafting and allometric differences\nbetween grafted and non-grafted trees\n"),
