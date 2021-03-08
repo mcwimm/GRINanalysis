@@ -199,9 +199,7 @@ Supp_Fig_Fig4 <-ggarrange(SuppFig3A, SuppFig3B, SuppFig3C,
                           labels = c("a)","b)","c)","d)","e)","f)"))
 
 #### Save file ####
-png("figures/Supp_Fig_Fig4.png", height = 4000, width = 7000, res=600)
-
-# tiff("figures/Supp_Fig_Fig4.tiff", height = 4000, width = 7000, res=600)
+tiff("figures/Supp_Inf_Fig4.tiff", height = 4000, width = 7000, res=600)
 annotate_figure(Supp_Fig_Fig4,
                 top = text_grob(paste0("Supplementary Figure 4. Generalized additive mixed effects model\nshowing the effects of smooth terms on tree height\n"),  color = "black", face = "bold", size = 12, hjust = 0, x=0.01,just="left"))
 dev.off()
