@@ -7,10 +7,10 @@ lapply(packages, require, character.only = TRUE)
 # Load data
 load("./data/LMtrees.rda") # LM.trees
 
-d<-LM.trees
+d <- LM.trees
 
 # Rename grouBin column to "Condition
-colnames(d)[12]<-"Condition"
+colnames(d)[12] <- "Condition"
 
 # define limits of plots
 d$Ymax <- d$Xmax <- ifelse(d$LOC %in% c("6","Lr 3"), 20, 30) 
@@ -50,8 +50,10 @@ Hegyi <- rowSums(ifelse(
    & r(d$height) >= d$height  # --> include this line to consider only neighbors larger than the focal tree
    & abs(r(stempos)-stempos) <= maxNNDistance_m,
    (r(d$DBH) /(d$DBH))/ abs(r(stempos)-stempos), 0))
-Hegyi[!(maxNNDistance_m < Re(stempos) & Re(stempos) < d$Xmax - maxNNDistance_m #here we drop all constellations falling out of the plot limits
-        & maxNNDistance_m < Im(stempos) & Im(stempos) < d$Ymax - maxNNDistance_m)] <- NA
+Hegyi[!(maxNNDistance_m < Re(stempos) & Re(stempos) < 
+           d$Xmax - maxNNDistance_m # here we drop all constellations falling out of the plot limits
+        & maxNNDistance_m < Im(stempos) & Im(stempos) < 
+           d$Ymax - maxNNDistance_m)] <- NA
 
 
 ## add Hegyi and asymmetric neighboruhood indices to the data frame
@@ -90,7 +92,12 @@ d4$ppt<-as.factor(d4$salinity)
 
 # Model
 
-Mod<-gam(height~s(AsymmNeighDBH, by=Condition,  bs="cc")+s(DBH, by=Condition,  bs="ds")+  Condition +  ppt, data=d4,random=~(1|LOC), family= Gamma("identity"), REML=T)
+Mod <- gam(height ~ s(AsymmNeighDBH, by=Condition, bs="cc") +
+              s(DBH, by=Condition,  bs="ds") +
+              Condition +  ppt, 
+           data=d4,
+           random=~(1|LOC), 
+           family= Gamma("identity"), REML=T)
 
 summary(Mod)
 AIC(Mod)
@@ -144,7 +151,8 @@ plt1_S<-ggplot(lmResid, mapping = aes(sample = y)) +
          axis.title = element_text(colour = "black", size = 14),
    )
 
-df_S<-data.frame(log_fitted= fitted(ModS2), residuals=resid(ModS2, type= "deviance"))
+df_S <- data.frame(log_fitted= fitted(ModS2), 
+                   residuals=resid(ModS2, type= "deviance"))
 head(df_S)
 
 
@@ -152,7 +160,8 @@ plt2_S<-ggplot(df_S, aes(x=log_fitted, y=residuals))+
    geom_point(alpha=0.7, colour="steelblue")+
    labs(x="Linear predictor", y="Deviance residuals")+
    geom_hline(yintercept=0, linetype="solid", color="red", size=0.5)+
-   #scale_y_continuous(limits= c(-0.8, 0.6), labels = signs_format(accuracy = .1))+
+   # scale_y_continuous(limits= c(-0.8, 0.6),
+                     # labels = signs_format(accuracy = .1))+
    theme(panel.grid = element_blank(),
          panel.background = element_blank(),
          axis.line = element_line(colour = "black", size=1),
@@ -170,8 +179,43 @@ ggarrange(plt1_S,plt2_S, labels = c("A","B"))
 # Save data #
 #############
 
+#### add results to empirical data ####
+# load("./data/LMavis.Rda")
+
+##### ACHTUNG!!! ####
+# Use match() instead of merge(). Merge will exclude from data set all empty rows
 # add Hegyi, AsymmNeighDBH, Slenderness and DBH to LMavis.rda
 
-# load("./data/LMavis.rda")
-# LM.avis = merge(LM.avis[, c(1:32)], d4[, c(3, 19:21)], by = "treeID")
-# save(LM.avis, file = "./data/LMavis.rda")
+# LM.avis_bis = merge(LM.avis[, c(1:32)], d4[, c(3, 19:21)], by = "treeID")
+# length(LM.avis_bis$treeID)
+
+#### USE MATCH() ####
+
+# LM.avis$AsymmNeighDBH <- d4$AsymmNeighDBH[match(LM.avis$treeID,  d4$treeID)]
+# LM.avis$Hegyi <- d4$Hegyi[match(LM.avis$treeID,  d4$treeID)]
+# LM.avis$slenderness <- d4$slenderness[match(LM.avis$treeID,  d4$treeID)]
+
+
+#### rearrange data frame (perhaps not necessary) ####
+
+# library(stringr)
+# PloTree<-str_split_fixed(LM.avis$treeID, "_", 2)
+
+# colnames(PloTree) <- c("plot", "tree")
+# PloTree <- as.data.frame(PloTree)
+
+
+# LM.avis <- cbind(LM.avis, PloTree)
+
+# LM.avis$plot <-as.numeric(as.character(test1$plot))
+# LM.avis$tree <-as.numeric(as.character(test1$tree))
+
+# LM.avis <- LM.avis[with(LM.avis, order(plot, tree)), ]
+# LM.avis <- LM.avis[, 1:37]
+
+
+#### Save updated LMavis.Rda file #### 
+# save(LM.avis, file = "./data/LMavis.Rda")
+
+
+
