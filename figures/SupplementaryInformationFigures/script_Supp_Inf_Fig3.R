@@ -1,13 +1,14 @@
-#### Required packages ####
-if (!require("tidyverse")) install.packages("tidyverse")
-if (!require("ggpubr")) install.packages("ggpubr")
-if (!require("BBmisc")) install.packages("BBmisc")
+#### required packages ####
+library(tidyverse)
+library(BBmisc)
+library(ggpubr)
 
-#### Required data ####
+#### required data ####
 load("./data/LMavis.Rda") 
 
 
-#### SI Figure 3  #####
+#### Supplementary Information Figure 3  #####
+
 Supp_Inf_Fig3 = LM.avis %>%
    group_by(LOC) %>% 
    mutate(DBHnorm = normalize(DBH, method = "range", range = c(0, 1))) %>% 
@@ -42,6 +43,7 @@ Supp_Inf_Fig3 = LM.avis %>%
          axis.line = element_line(colour = 'black', size = 1),
          legend.text = element_text(size = 12),
          legend.spacing.y = unit(0.45,"cm"),
+         
          legend.title = element_text(size = 14),
          legend.margin = margin(t = 1, unit = "cm"),
          legend.background = element_rect(fill = NA),
@@ -51,7 +53,8 @@ Supp_Inf_Fig3 = LM.avis %>%
       size = guide_legend(ncol = 2, byrow = F))
 
 
-#### Save file ####
-tiff("figures/Sup_Info_Figure3.tiff", width = 1700, height = 2100, res=300)
-Supp_Inf_Fig3
+#### SAVE ####
+tiff("figures/Supp_Inf_Fig3.tiff", width = 1700, height = 2100, res=300)
+annotate_figure(Supp_Inf_Fig3,
+                top = text_grob(paste0("Supplementary Figure 3. Cummulative garfting frequency on eight\nforest stands with increasing density and sediment salinity\n"),  color = "black", face = "bold", size = 12, hjust = 0, x=0.01,just="left"))
 dev.off()

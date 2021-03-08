@@ -1,26 +1,25 @@
-#### Required packages ####
-if (!require("tidyverse")) install.packages("tidyverse")
-if (!require("ggcorrplot")) install.packages("ggcorrplot")
+#### required packages ####
+ library(ggcorrplot)
 
-#### Required data ####
+#### required data ####
 load("./data/LMavis.Rda") 
 
-#### Prepare data ####
-# Select desired rows (location, densities, salinity) from data frame
+#### select desired rows (location, densities, salinity) from data frame ####
 d = LM.avis %>% 
    distinct(LOC, tot.dens, avi.dens, salinity) %>% 
    mutate(r_avi = avi.dens / tot.dens)
 
-# Compute correlation matrix
+#### compute correlation matrix ####
 correlations <- cor(d[, -1],
                     use = "complete.obs")
 
-# Calculate p-values
+#### calculate p-values ####
 res1 <- cor_pmat(d[, -1])
 
 
-#### SI Figure 6 ####
-Supp_Inf_Fig6 <- ggcorrplot(correlations, 
+#### create figure ####
+#x11()
+Supp_Inf_Fig6<-ggcorrplot(correlations, 
            method = "circle", type = "upper",
            colors = c("#6D9EC1", "white", "#E46726"),
            legend.title = "Correlation",
@@ -40,7 +39,10 @@ Supp_Inf_Fig6 <- ggcorrplot(correlations,
                                          linetype = 'solid',
                                          colour = "#A9A9A9"))
 
-#### Save file ####
-tiff("figures/Sup_Info_Figure6.tiff", width = 2000, height = 2000, res=300)
-Supp_Inf_Fig6
+#### Save figure ####
+
+tiff("figures/Supp_Inf_Fig6.tiff", width = 2000, height = 2000, res=300)
+annotate_figure(Supp_Inf_Fig6,
+                top = text_grob(paste0("Supplementary Figure 6. Pearson correlation of the level 2 variables\nin the logistic regression\n"),  color = "black", face = "bold", size = 12, hjust = 0, x=0.01,just="left"))
 dev.off()
+

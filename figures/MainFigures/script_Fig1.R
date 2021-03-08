@@ -1,39 +1,40 @@
-#### Required packages ####
-if (!require("tidyverse")) install.packages("tidyverse")
-if (!require("ggpubr")) install.packages("ggpubr")    # ggarrange
-if (!require("ggforce")) install.packages("ggforce")  # geom_circle
-if (!require("png")) install.packages("png")          # readPNG
+#### required packages ####
+library(tidyverse)
+library(ggpubr)  # ggarrange
+library(ggforce) # geom_circle
+library(png)
 
 
 #### Import the La Mancha map (Fig 1a) ####
-# Files used to construct StudySiteMexico.png are contained withing the folder "Files_MapStudySiteMexico". The folder includes plot coordinates, a geoTIFF and a qgz to open in Qgis (open source)
+# Files used to construct Map2.png are contained withing the folder "Map2.png gis files". The folder includes plot coordinates, a geoTIFF and a qgz to open in Qgis (open source)
 
-img <- readPNG("figures/MainFigures/StudySiteMexico.png")
-Fig1A <- ggplot() + 
+img <- readPNG("figures/Map3.png")
+P3 <- ggplot() + 
   theme_void()+
   background_image(img)
 
 
-#### Top view of selected study sites (Fig 1 B-D) ####
-# Required La Mancha data
+# Top view of selected study sites (Fig 1 B)
+#### required La Mancha data ####
 load("./data/LMtrees.Rda") 
 load("./data/LMlinks.Rda") 
 # low stress = LOC 1
 # mid stress = LOC 9
 # high stress = LOC 12
 
-# Subset data
+#### Figure 1b ####
+# subset data
 l = LM.links %>% 
-  filter(LOC %in% c(1, 9, 12)) %>% 
-  mutate(LOC = factor(LOC, levels = c(1, 9, 12)))
+  filter(LOC %in% c(12, 9, 1)) %>% 
+  mutate(LOC = factor(LOC, levels = c(12, 9, 1)))
 t = LM.trees %>% 
-  filter(LOC %in% c(1, 9, 12)) %>% 
+  filter(LOC %in% c(12, 9, 1)) %>% 
   mutate(alpha = ifelse(groupBin == "group", 0.5, 0.2)) %>% 
-  mutate(LOC = factor(LOC, levels = c(1, 9, 12)))
+  mutate(LOC = factor(LOC, levels = c(12, 9, 1)))
 
 labs = data.frame(label = c("b)", "c)", "d)"),
-                  LOC = factor(c(1, 9, 12), levels = c(1, 9, 12)))
-Fig1B = t %>% 
+                  LOC = factor(c(12, 9, 1), levels = c(12, 9, 1)))
+Fig1bcd = t %>% 
   ggplot(.) + 
   coord_fixed(clip = 'off', xlim = c(-2, 32)) +
   geom_circle(mapping = aes(x0=x, y0=y, r = CR, 
@@ -80,9 +81,10 @@ Fig1B = t %>%
 
 
 
-#### Arrange figures and save file ####
+#### arrange figures and save file ####
 tiff("figures/Fig1.tiff", width = 9000, height = 5000, res=300)
-ggarrange(Fig1A, Fig1B, 
+annotate_figure(ggarrange(P3, Fig1bcd, 
           widths = c(3.5,1.2), labels=c("a)",""),
-          font.label = list(size=40, color="black") )
+          font.label = list(size=40, color="black") ),
+          top = text_grob(paste0("Fig. 1. Study site and root network maps located on the central coast of the Gulf of Mexico\n"),color = "black", face = "bold", size = 38, hjust = 0, x=0.005,just="left"))
 dev.off()
