@@ -78,7 +78,7 @@ annotate_figure(
    ggarrange(SI_Fig1A, SI_Fig1B, 
              common.legend = TRUE, legend = "bottom",
              labels= c("a)","b)")),
-   top = text_grob(paste0("Supplementary Figure 1. Autocorrelation of variables when using the \nHegyi index\n"),  
+   top = text_grob(paste0("Supplementary Fig. 1: Autocorrelation of variables when using the \nHegyi index\n"),  
                    color = "black", face = "bold", size = 12, 
                    hjust = 0, x=0.01,just="left"))
 dev.off()
