@@ -86,7 +86,7 @@ tiff("figures/Fig1.tiff", width = 9000, height = 5000, res=300)
 annotate_figure(ggarrange(Fig1A, Fig1bcd, 
                           widths = c(3.5,1.2), labels=c("a)",""),
                           font.label = list(size=40, color="black") ),
-                top = text_grob(paste0("Fig. 1. Study site and root network maps located on the central coast of the Gulf of Mexico\n"),
+                top = text_grob(paste0("Fig. 1: Study site and root network maps located on the central coast of the Gulf of Mexico\n"),
                                 color = "black", face = "bold", size = 38,
                                 hjust = 0, x=0.005,just="left"))
 dev.off()
