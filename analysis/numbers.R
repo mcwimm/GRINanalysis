@@ -85,6 +85,8 @@ View(d)
 ## average node degree (all A.g. trees) predicted by grafting frequency
 summary(lm(avgNodeDegreeAll ~ pGrafted, data = d))    
 summary(lm(avgNodeDegreeAll ~ avi.dens, data = d))       
+summary(lm(avgNodeDegreeAll ~ avi.dens, data = d %>% 
+              filter(LOC != 3)))       
 
 ## group size predicted by avicennia density
 summary(lm(meanGS ~ avi.dens, data = d))
