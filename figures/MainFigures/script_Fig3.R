@@ -133,6 +133,11 @@ fig3B = ggplot(LOCs) +
                          ..adj.rr.label.., sep = "~~~")),
       label.x.npc = 0, label.y = 1.15, size = 4,
       formula = y~x) +
+    stat_regline_equation(
+       aes(x = pGrafted, y = avgNodeDegreeAll,
+           label =  paste("Grafting~frequency~", ..adj.rr.label.., sep = "~~~~~~")),
+       label.x.npc = 0, label.y = 1.17, size = 4,
+       formula = y~x) +
    labs(y = "Average \nnode degree", x = "",
         size = "Grafting \nfrequency (%)",
         fill = "Salinity (ppt)", shape = "Salinity (ppt)") +
