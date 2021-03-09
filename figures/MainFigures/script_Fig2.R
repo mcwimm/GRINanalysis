@@ -134,7 +134,7 @@ Fig2C <- LM.avis %>%
 
 
 #### Merge figures ####
-Fig2BC <- ggarrange(Fig2B, Fig2C, widths=1, heights=1,
+Fig2BC <- ggarrange(Fig2B, Fig2C, widths=c(1,1.1), heights=1,
                     common.legend = TRUE, labels = c("b)","c)"),
                     legend = "bottom")
 
@@ -144,7 +144,7 @@ Fig2 <- ggarrange(Fig2A, Fig2BC, nrow = 2,
 #### Save file ####
 tiff("figures/Fig2.tiff", width = 2000, height = 3000, res=300)
 annotate_figure(Fig2,
-                top = text_grob(paste0("Fig. 2. Probability of rafting and allometric differences\nbetween grafted and non-grafted trees\n"),
+                top = text_grob(paste0("Fig. 2: Probability of rafting and allometric differences\nbetween grafted and non-grafted trees\n"),
                                 color = "black", face = "bold", 
                                 size = 14, hjust = 0, x=0.005,just="left"))
 dev.off()
