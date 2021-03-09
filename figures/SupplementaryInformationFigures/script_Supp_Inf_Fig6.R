@@ -43,6 +43,6 @@ Supp_Inf_Fig6 <- ggcorrplot(correlations,
 #### Save figure ####
 tiff("figures/Supp_Inf_Fig6.tiff", width = 2000, height = 2000, res=300)
 annotate_figure(Supp_Inf_Fig6,
-                top = text_grob(paste0("Supplementary Figure 6. Pearson correlation of the level 2 variables\nin the logistic regression\n"),  color = "black", face = "bold", size = 12, hjust = 0, x=0.01,just="left"))
+                top = text_grob(paste0("Supplementary Fig. 6: Pearson correlation of the level 2 variables\nin the logistic regression\n"),  color = "black", face = "bold", size = 12, hjust = 0, x=0.01,just="left"))
 dev.off()
 
