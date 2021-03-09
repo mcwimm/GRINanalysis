@@ -49,7 +49,7 @@ SuppInfFig5 <- ggarrange(plt1, plt2, labels = c("a)","b)"))
 #### Save file ####
 tiff("figures/Supp_Inf_Fig5.tiff", height = 1400, width =2100, res=300)
 annotate_figure(SuppInfFig5,
-                top = text_grob(paste0("Supplementary Figure 5. Generalized additive mixed effects model residuals\n"),  
+                top = text_grob(paste0("Supplementary Fig. 5: Generalized additive mixed effects model residuals\n"),  
                                 color = "black", face = "bold", 
                                 size = 12, hjust = 0, x=0.01,just="left"))
 dev.off()
