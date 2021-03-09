@@ -55,7 +55,7 @@ Supp_Inf_Fig3 = LM.avis %>%
 #### Save file ####
 tiff("figures/Supp_Inf_Fig3.tiff", width = 1700, height = 2100, res=300)
 annotate_figure(Supp_Inf_Fig3,
-                top = text_grob(paste0("Supplementary Figure 3. Cummulative garfting frequency on eight\nforest stands with increasing density and sediment salinity\n"),  
+                top = text_grob(paste0("Supplementary Fig. 3: Cummulative garfting frequency on eight\nforest stands with increasing density and sediment salinity\n"),  
                                 color = "black", face = "bold", 
                                 size = 12, hjust = 0, x=0.01,just="left"))
 dev.off()
