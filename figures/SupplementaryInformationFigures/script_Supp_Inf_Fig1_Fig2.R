@@ -156,7 +156,7 @@ Sup_Info_Figure2 <- ggarrange(SI_Fig2A, SI_Fig2B,
 #### Save file ####
 tiff("figures/Supp_Inf_Fig2.tiff", width=2000, height=1500, res=300)
 annotate_figure(Sup_Info_Figure2,
-                top = text_grob(paste0("Supplementary Figure 2. Asymmetric neighbourhoods of grafted\nand non-grafted trees\n"),  
+                top = text_grob(paste0("Supplementary Fig. 2: Asymmetric neighbourhoods of grafted\nand non-grafted trees\n"),  
                                 color = "black", face = "bold", 
                                 size = 12, hjust = 0, x=0.01,just="left"))
 
