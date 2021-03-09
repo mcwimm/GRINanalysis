@@ -104,6 +104,7 @@ fig3A = Plot_data %>%
          axis.title.y = element_text(size=14, colour = "black"),
          axis.ticks.length=unit(-1.5, "mm"),
          axis.line = element_line(colour = 'black', size = 1),
+         legend.position = "right",
          legend.text = element_text(size = 12),
          legend.title = element_text(size = 14),
          legend.margin = margin(t = 1, unit = "cm"),
@@ -128,8 +129,8 @@ fig3B = ggplot(LOCs) +
                se = F) + 
    stat_regline_equation(
       aes(x = avi.dens, y = avgNodeDegreeAll,
-          label =  paste("Average~node~'degree'~", 
-                         ..adj.rr.label.., sep = "~~~~~~")),
+          label =  paste("Average~node~'degree':~", 
+                         ..adj.rr.label.., sep = "~~~")),
       label.x.npc = 0, label.y = 1.15, size = 4,
       formula = y~x) +
    labs(y = "Average \nnode degree", x = "",
@@ -191,7 +192,7 @@ C = LOCs %>%
 fig3C = C +
    labs(x = "Stand density (trees per hectare)",
         y = "Group density \n(groups per hectare)",
-        size = "No. of trees \nper group",
+        size = "Group \nmembers",
         fill = "Salinity (ppt)", 
         shape = "Salinity (ppt)") +
    theme(panel.grid = element_blank(),
@@ -231,7 +232,7 @@ Fig3 <- ggarrange(fig3A, r, labels = c("a)", ""))
 #### Save file ####
 tiff("figures/Fig3.tiff", width = 3700, height = 2300, res=300)
 annotate_figure(Fig3,
-                top = text_grob(paste0("Fig. 3. Root graft network attributes\n"),
+                top = text_grob(paste0("Fig. 3: Root graft network attributes\n"),
                                 color = "black", face = "bold", 
                                 size = 14, hjust = 0, x=0.005,just="left"))
 dev.off()
