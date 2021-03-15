@@ -9,7 +9,7 @@ fillcolors <- c("#260C7D", "#007D06")
 
 
 #### Fig 2a ####
-Fig2A = LM.avis %>% 
+Fig2A = LM.avis[!is.na(LM.avis$fm.gmc.probs),] %>% 
    ggplot(.) +
    geom_line(aes(x = DBH, y = fm.gmc.probs, 
                  col = avi.dens, group = LOC),
