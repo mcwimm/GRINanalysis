@@ -8,7 +8,7 @@ load("./data/LMavis.Rda")
 LM.avis$Condition = LM.avis$groupBin
 
 #### SI Figure 1 #####
-SI_Fig1A <- ggplot(data = LM.avis, aes(x = Hegyi, y = DBH, 
+SI_Fig1A <- ggplot(data = LM.avis[!is.na(LM.avis$AsymmNeighDBH),], aes(x = Hegyi, y = DBH, 
                                       color = Condition, size=Hegyi)) +
    geom_point(alpha=0.5) +
    xlab("Stem diameter (cm)") +
@@ -42,7 +42,7 @@ SI_Fig1A <- ggplot(data = LM.avis, aes(x = Hegyi, y = DBH,
           size = guide_legend(ncol = 2, byrow = F))
 
 
-SI_Fig1B <- ggplot(data = LM.avis, aes(x =DBH, y = height, 
+SI_Fig1B <- ggplot(data = LM.avis[!is.na(LM.avis$AsymmNeighDBH),], aes(x =DBH, y = height, 
                                      color = Condition,size=Hegyi)) +
    geom_point(alpha=0.5) +
    xlab("Stem diameter (cm)") +
@@ -77,6 +77,7 @@ tiff("figures/Supp_Inf_Fig1.tiff", height = 1500, width = 2000, res=300)
 annotate_figure(
    ggarrange(SI_Fig1A, SI_Fig1B, 
              common.legend = TRUE, legend = "bottom",
+             widths=c(0.95,1),
              labels= c("a)","b)")),
    top = text_grob(paste0("Supplementary Fig. 1: Autocorrelation of variables when using the \nHegyi index\n"),  
                    color = "black", face = "bold", size = 12, 
@@ -86,9 +87,9 @@ dev.off()
 
 #### SI Figure 2 ####
 # shift between d2 (all trees) and d5, Trees with asymmetry
-SI_Fig2A <- ggplot(LM.avis, aes(x = AsymmNeighDBH, y = DBH, colour=Condition)) + 
+SI_Fig2A <- ggplot(LM.avis[!is.na(LM.avis$AsymmNeighDBH),], aes(x = AsymmNeighDBH, y = DBH, colour=Condition)) + 
    geom_point(aes(size=AsymmNeighDBH), alpha=0.5)+
-   xlab("Neighbourhood asymmetry \nindex") +
+   xlab("Neighbourhood asymmetry") +
    ylab("Stem diameter (cm)") +
    scale_size_continuous(name=expression(atop(bold("Neighbourhood"), 
                                               paste(bold("asymmetry")))))+
@@ -115,7 +116,7 @@ SI_Fig2A <- ggplot(LM.avis, aes(x = AsymmNeighDBH, y = DBH, colour=Condition)) +
           size = guide_legend(ncol = 2, byrow = F))
 
 
-SI_Fig2B <- ggplot(data = LM.avis, aes(x =DBH, y = height, 
+SI_Fig2B <- ggplot(data = LM.avis[!is.na(LM.avis$AsymmNeighDBH),], aes(x =DBH, y = height, 
                                        color = Condition, 
                                        size = AsymmNeighDBH)) +
    geom_point(alpha=0.5) +
@@ -151,7 +152,8 @@ Sup_Info_Figure2 <- ggarrange(SI_Fig2A, SI_Fig2B,
                               align = "hv",
                               common.legend = TRUE, legend = "bottom",
                               labels = c("a)","b)"),
-                              heights = 1)
+                              heights = 1,
+                              widths=c(0.95,1)
 
 #### Save file ####
 tiff("figures/Supp_Inf_Fig2.tiff", width=2000, height=1500, res=300)
