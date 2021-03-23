@@ -1,7 +1,7 @@
 
 # GRINanalysis (Grafted Root Interaction networks) - A VWStifftung funded project -
 
-This repository contains data and analyses of the manuscript entitled "Roots of cooperation: Can root graft networks benefit trees under stress?", currently under Review at Communications Biology 2020.
+This repository contains data and analyses of the manuscript entitled "Cooperative root graft networks benefit mangrove trees under stress", currently under Review at Communications Biology 2021.
 
 Co-Authored by: AG Vovides, MC Wimmler, F Schrewe, T Balke, M Zwanzig, C Piou, E Delay, J López-Portillo and U Berger
 
